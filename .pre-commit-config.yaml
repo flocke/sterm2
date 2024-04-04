@@ -1,0 +1,42 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    - id: check-merge-conflict
+      name: Check for unresolved merge conflicts
+    - id: end-of-file-fixer
+      name: Fix end of files
+    - id: trailing-whitespace
+      name: Trim trailing whitespaces
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.5
+    hooks:
+      - id: remove-tabs
+        name: Replace tabs with spaces
+      - id: insert-license
+        name: Insert license comments in C++ files
+        files: |
+            (?x)(
+              \.cpp|
+              \.hpp
+            )$
+        args:
+          - --use-current-year
+          - --allow-past-years
+          - --license-filepath
+          - LICENSE.txt
+          - --comment-style
+          - //
+      - id: insert-license
+        name: Insert license comments in CMake files
+        files: |
+            (?x)(
+              CMakeLists\.txt|
+              \.cmake|
+              \.cmake.in
+            )$
+        args:
+          - --use-current-year
+          - --allow-past-years
+          - --license-filepath
+          - LICENSE.txt

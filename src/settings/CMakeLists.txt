@@ -20,25 +20,26 @@
 
 cmake_minimum_required(VERSION 3.23)
 
-# This component is the main executable of the project
-set(COMPONENT_NAME ${PROJECT_NAME})
+set(COMPONENT_NAME settings)
 
-add_executable(${COMPONENT_NAME})
+add_library(${COMPONENT_NAME})
+add_library(${PROJECT_NAME}::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
 
 target_sources(
     ${COMPONENT_NAME}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/settings.cpp
+)
+
+target_include_directories(
+    ${COMPONENT_NAME}
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/inc>
 )
 
 target_link_libraries(
     ${COMPONENT_NAME}
-    PRIVATE
-        qtermwidget5
-        ${PROJECT_NAME}::settings
-)
-
-install(
-    TARGETS ${COMPONENT_NAME}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC
+        Qt5::Core
+        Qt5::Gui
 )

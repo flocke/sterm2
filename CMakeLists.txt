@@ -22,11 +22,14 @@ cmake_minimum_required(VERSION 3.23)
 
 # Setup global project options
 project(
-    sterm2
+    Sterm2
     VERSION 0.1.0
     DESCRIPTION "Minimal terminal emulator for linux base on Qt5"
     LANGUAGES CXX
 )
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(GNUInstallDirs)
 

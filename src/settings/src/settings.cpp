@@ -18,34 +18,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <QApplication>
+#include <QSettings>
 #include <QDebug>
-#include <QMainWindow>
-
-#include "qtermwidget.h"
 
 #include "settings.hpp"
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    QMainWindow *mainWindow = new QMainWindow();
+namespace sterm2 {
+    QVariant settings::getValue(QString key, QVariant defaultValue)
+    {
+        QSettings store(QSettings::IniFormat, QSettings::UserScope, "sterm2", "sterm2");
+        return store.value(key, defaultValue);
+    }
 
-    sterm2::settings* settings = new sterm2::settings();
+    QString settings::getString(QString key, QString defaultValue)
+    {
+        return getValue(key, defaultValue).toString();
+    }
 
-    QTermWidget *console = new QTermWidget();
+    int settings::getInt(QString key, int defaultValue)
+    {
+        return getValue(key, defaultValue).toInt();
+    }
 
-    console->setTerminalFont(settings->getFont());
-    console->setScrollBarPosition(QTermWidget::ScrollBarRight);
-
-    mainWindow->setCentralWidget(console);
-    mainWindow->resize(600, 400);
-
-    // real startup
-    QObject::connect(console, &QTermWidget::finished, mainWindow, &QMainWindow::close);
-
-    qDebug() << console->getTerminalFont();
-
-    mainWindow->show();
-    return app.exec();
+    QFont settings::getFont()
+    {
+        return QFont(getString("theme/font", "monospace"), getInt("theme/font_size", 11));
+    }
 }

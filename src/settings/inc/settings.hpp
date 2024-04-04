@@ -18,34 +18,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <QApplication>
-#include <QDebug>
-#include <QMainWindow>
+#include <QFont>
 
-#include "qtermwidget.h"
+namespace sterm2 {
+    class settings {
+        private:
+            // Generic function to get a value from the settings file
+            QVariant getValue(QString key, QVariant defaultValue);
 
-#include "settings.hpp"
-
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    QMainWindow *mainWindow = new QMainWindow();
-
-    sterm2::settings* settings = new sterm2::settings();
-
-    QTermWidget *console = new QTermWidget();
-
-    console->setTerminalFont(settings->getFont());
-    console->setScrollBarPosition(QTermWidget::ScrollBarRight);
-
-    mainWindow->setCentralWidget(console);
-    mainWindow->resize(600, 400);
-
-    // real startup
-    QObject::connect(console, &QTermWidget::finished, mainWindow, &QMainWindow::close);
-
-    qDebug() << console->getTerminalFont();
-
-    mainWindow->show();
-    return app.exec();
+            // Type-specific functions to get values
+            QString getString(QString key, QString defaultValue);
+            int getInt(QString key, int defaultValue);
+        public:
+            QFont getFont();
+    };
 }

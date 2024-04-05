@@ -18,6 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <QDebug>
 #include <QSettings>
 
 #include "qtermwidget.h"
@@ -60,27 +61,31 @@ namespace STerm2 {
     {
         QString position = getString("theme/scrollbar", "right");
 
-        if(position == "left")
+        if(position == "left") {
             return QTermWidget::ScrollBarPosition::ScrollBarLeft;
-        else if(position == "right")
+        } else if(position == "right") {
             return QTermWidget::ScrollBarPosition::ScrollBarRight;
-        else if(position == "none")
+        } else if(position == "none") {
             return QTermWidget::ScrollBarPosition::NoScrollBar;
-        else
+        } else {
+            qWarning() << "[WARN] Unknown scrollbar position:" << position;
             return QTermWidget::ScrollBarPosition::NoScrollBar;
+        }
     }
 
     QTermWidget::KeyboardCursorShape Settings::getCursorShape()
     {
         QString cursor = getString("theme/cursor", "block");
 
-        if(cursor == "block")
+        if(cursor == "block") {
             return QTermWidget::KeyboardCursorShape::BlockCursor;
-        else if(cursor == "underline")
+        } else if(cursor == "underline") {
             return QTermWidget::KeyboardCursorShape::UnderlineCursor;
-        else if(cursor == "beam")
+        } else if(cursor == "beam") {
             return QTermWidget::KeyboardCursorShape::IBeamCursor;
-        else
+        } else {
+            qWarning() << "[WARN] Unknown cursor shape:" << cursor;
             return QTermWidget::KeyboardCursorShape::BlockCursor;
+        }
     }
 }

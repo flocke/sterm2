@@ -25,6 +25,12 @@ set(COMPONENT_NAME ${PROJECT_NAME})
 
 add_executable(${COMPONENT_NAME})
 
+set_target_properties(
+    ${COMPONENT_NAME}
+    PROPERTIES
+        OUTPUT_NAME "sterm2"
+)
+
 target_sources(
     ${COMPONENT_NAME}
     PRIVATE

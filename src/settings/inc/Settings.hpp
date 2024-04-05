@@ -31,8 +31,10 @@ namespace STerm2 {
             // Type-specific functions to get values
             QString getString(QString key, QString defaultValue);
             int getInt(QString key, int defaultValue);
+            qreal getReal(QString key, qreal defaultValue);
         public:
             QFont getFont();
+            qreal getOpacity();
             QTermWidget::ScrollBarPosition getScrollbarPosition();
             QTermWidget::KeyboardCursorShape getCursorShape();
     };

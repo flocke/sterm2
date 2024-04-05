@@ -41,9 +41,19 @@ namespace STerm2 {
         return getValue(key, defaultValue).toInt();
     }
 
+    qreal Settings::getReal(QString key, qreal defaultValue)
+    {
+        return getValue(key, defaultValue).toReal();
+    }
+
     QFont Settings::getFont()
     {
         return QFont(getString("theme/font", "monospace"), getInt("theme/font_size", 11));
+    }
+
+    qreal Settings::getOpacity()
+    {
+        return getReal("theme/opacity", 1);
     }
 
     QTermWidget::ScrollBarPosition Settings::getScrollbarPosition()

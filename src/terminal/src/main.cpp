@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     console->setTerminalFont(settings->getFont());
     console->setScrollBarPosition(settings->getScrollbarPosition());
     console->setKeyboardCursorShape(settings->getCursorShape());
+    console->setTerminalOpacity(settings->getOpacity());
 
     mainWindow->setCentralWidget(console);
     mainWindow->resize(600, 400);

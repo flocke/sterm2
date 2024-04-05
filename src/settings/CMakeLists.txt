@@ -20,7 +20,7 @@
 
 cmake_minimum_required(VERSION 3.23)
 
-set(COMPONENT_NAME settings)
+set(COMPONENT_NAME Settings)
 
 add_library(${COMPONENT_NAME})
 add_library(${PROJECT_NAME}::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
@@ -28,7 +28,7 @@ add_library(${PROJECT_NAME}::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
 target_sources(
     ${COMPONENT_NAME}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/settings.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/Settings.cpp
 )
 
 target_include_directories(
@@ -42,4 +42,5 @@ target_link_libraries(
     PUBLIC
         Qt5::Core
         Qt5::Gui
+        qtermwidget5
 )

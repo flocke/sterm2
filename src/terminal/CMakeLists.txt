@@ -35,7 +35,7 @@ target_link_libraries(
     ${COMPONENT_NAME}
     PRIVATE
         qtermwidget5
-        ${PROJECT_NAME}::settings
+        ${PROJECT_NAME}::Settings
 )
 
 install(

@@ -19,29 +19,58 @@
 // SOFTWARE.
 
 #include <QSettings>
-#include <QDebug>
 
-#include "settings.hpp"
+#include "qtermwidget.h"
 
-namespace sterm2 {
-    QVariant settings::getValue(QString key, QVariant defaultValue)
+#include "Settings.hpp"
+
+namespace STerm2 {
+    QVariant Settings::getValue(QString key, QVariant defaultValue)
     {
         QSettings store(QSettings::IniFormat, QSettings::UserScope, "sterm2", "sterm2");
         return store.value(key, defaultValue);
     }
 
-    QString settings::getString(QString key, QString defaultValue)
+    QString Settings::getString(QString key, QString defaultValue)
     {
         return getValue(key, defaultValue).toString();
     }
 
-    int settings::getInt(QString key, int defaultValue)
+    int Settings::getInt(QString key, int defaultValue)
     {
         return getValue(key, defaultValue).toInt();
     }
 
-    QFont settings::getFont()
+    QFont Settings::getFont()
     {
         return QFont(getString("theme/font", "monospace"), getInt("theme/font_size", 11));
+    }
+
+    QTermWidget::ScrollBarPosition Settings::getScrollbarPosition()
+    {
+        QString position = getString("theme/scrollbar", "right");
+
+        if(position == "left")
+            return QTermWidget::ScrollBarPosition::ScrollBarLeft;
+        else if(position == "right")
+            return QTermWidget::ScrollBarPosition::ScrollBarRight;
+        else if(position == "none")
+            return QTermWidget::ScrollBarPosition::NoScrollBar;
+        else
+            return QTermWidget::ScrollBarPosition::NoScrollBar;
+    }
+
+    QTermWidget::KeyboardCursorShape Settings::getCursorShape()
+    {
+        QString cursor = getString("theme/cursor", "block");
+
+        if(cursor == "block")
+            return QTermWidget::KeyboardCursorShape::BlockCursor;
+        else if(cursor == "underline")
+            return QTermWidget::KeyboardCursorShape::UnderlineCursor;
+        else if(cursor == "beam")
+            return QTermWidget::KeyboardCursorShape::IBeamCursor;
+        else
+            return QTermWidget::KeyboardCursorShape::BlockCursor;
     }
 }

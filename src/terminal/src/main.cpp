@@ -19,32 +19,30 @@
 // SOFTWARE.
 
 #include <QApplication>
-#include <QDebug>
 #include <QMainWindow>
 
 #include "qtermwidget.h"
 
-#include "settings.hpp"
+#include "Settings.hpp"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QMainWindow *mainWindow = new QMainWindow();
 
-    sterm2::settings* settings = new sterm2::settings();
+    STerm2::Settings* settings = new STerm2::Settings();
 
     QTermWidget *console = new QTermWidget();
 
     console->setTerminalFont(settings->getFont());
-    console->setScrollBarPosition(QTermWidget::ScrollBarRight);
+    console->setScrollBarPosition(settings->getScrollbarPosition());
+    console->setKeyboardCursorShape(settings->getCursorShape());
 
     mainWindow->setCentralWidget(console);
     mainWindow->resize(600, 400);
 
     // real startup
     QObject::connect(console, &QTermWidget::finished, mainWindow, &QMainWindow::close);
-
-    qDebug() << console->getTerminalFont();
 
     mainWindow->show();
     return app.exec();

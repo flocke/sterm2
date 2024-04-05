@@ -22,7 +22,7 @@ cmake_minimum_required(VERSION 3.23)
 
 # Setup global project options
 project(
-    Sterm2
+    STerm2
     VERSION 0.1.0
     DESCRIPTION "Minimal terminal emulator for linux base on Qt5"
     LANGUAGES CXX

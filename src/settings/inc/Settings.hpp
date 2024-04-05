@@ -20,8 +20,10 @@
 
 #include <QFont>
 
-namespace sterm2 {
-    class settings {
+#include "qtermwidget.h"
+
+namespace STerm2 {
+    class Settings {
         private:
             // Generic function to get a value from the settings file
             QVariant getValue(QString key, QVariant defaultValue);
@@ -31,5 +33,7 @@ namespace sterm2 {
             int getInt(QString key, int defaultValue);
         public:
             QFont getFont();
+            QTermWidget::ScrollBarPosition getScrollbarPosition();
+            QTermWidget::KeyboardCursorShape getCursorShape();
     };
 }

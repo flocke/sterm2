@@ -88,4 +88,18 @@ namespace STerm2 {
             return QTermWidget::KeyboardCursorShape::BlockCursor;
         }
     }
+
+    QTextCodec* Settings::getTextEncoding()
+    {
+        QString encoding = getString("terminal/encoding", "utf-8");
+        QTextCodec *codec = QTextCodec::codecForName(encoding.toLocal8Bit());
+
+        if(codec == nullptr)
+        {
+            qWarning() << "[WARN] Unknown encoding:" << encoding;
+            codec = QTextCodec::codecForLocale();
+        }
+
+        return codec;
+    }
 }

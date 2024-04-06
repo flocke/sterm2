@@ -23,11 +23,15 @@
 #include "Terminal.hpp"
 
 namespace STerm2 {
-    Terminal::Terminal() : QTermWidget()
+    Terminal::Terminal() : QTermWidget(0)
     {
+        setTextCodec(settings.getTextEncoding());
+
         setTerminalFont(settings.getFont());
         setScrollBarPosition(settings.getScrollbarPosition());
         setKeyboardCursorShape(settings.getCursorShape());
         setTerminalOpacity(settings.getOpacity());
+
+        startShellProgram();
     }
 }

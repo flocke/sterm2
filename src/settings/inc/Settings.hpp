@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #include <QFont>
+#include <QTextCodec>
 
 #include "qtermwidget.h"
 
@@ -37,5 +38,6 @@ namespace STerm2 {
             qreal getOpacity();
             QTermWidget::ScrollBarPosition getScrollbarPosition();
             QTermWidget::KeyboardCursorShape getCursorShape();
+            QTextCodec* getTextEncoding();
     };
 }

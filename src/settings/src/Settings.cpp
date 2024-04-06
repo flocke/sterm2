@@ -68,7 +68,7 @@ namespace STerm2 {
         } else if(position == "none") {
             return QTermWidget::ScrollBarPosition::NoScrollBar;
         } else {
-            qWarning() << "[WARN] Unknown scrollbar position:" << position;
+            qWarning() << "Unknown scrollbar position:" << position;
             return QTermWidget::ScrollBarPosition::NoScrollBar;
         }
     }
@@ -84,7 +84,7 @@ namespace STerm2 {
         } else if(cursor == "beam") {
             return QTermWidget::KeyboardCursorShape::IBeamCursor;
         } else {
-            qWarning() << "[WARN] Unknown cursor shape:" << cursor;
+            qWarning() << "Unknown cursor shape:" << cursor;
             return QTermWidget::KeyboardCursorShape::BlockCursor;
         }
     }
@@ -96,7 +96,7 @@ namespace STerm2 {
 
         if(codec == nullptr)
         {
-            qWarning() << "[WARN] Unknown encoding:" << encoding;
+            qWarning() << "Unknown text encoding:" << encoding;
             codec = QTextCodec::codecForLocale();
         }
 

@@ -25,6 +25,8 @@
 
 int main(int argc, char *argv[])
 {
+    qSetMessagePattern("%{if-critical}[CRITICAL]%{endif}[%{function}] %{message}");
+
     QApplication app(argc, argv);
     QMainWindow *mainWindow = new QMainWindow();
 

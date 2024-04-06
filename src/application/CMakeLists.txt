@@ -20,6 +20,31 @@
 
 cmake_minimum_required(VERSION 3.23)
 
-add_subdirectory(settings)
-add_subdirectory(terminal)
-add_subdirectory(application)
+# This component is the main executable of the project
+set(COMPONENT_NAME ${PROJECT_NAME})
+
+add_executable(${COMPONENT_NAME})
+
+set_target_properties(
+    ${COMPONENT_NAME}
+    PROPERTIES
+        OUTPUT_NAME "sterm2"
+)
+
+target_sources(
+    ${COMPONENT_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+)
+
+target_link_libraries(
+    ${COMPONENT_NAME}
+    PRIVATE
+        qtermwidget5
+        ${PROJECT_NAME}::Terminal
+)
+
+install(
+    TARGETS ${COMPONENT_NAME}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

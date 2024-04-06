@@ -20,31 +20,32 @@
 
 cmake_minimum_required(VERSION 3.23)
 
-# This component is the main executable of the project
-set(COMPONENT_NAME ${PROJECT_NAME})
+set(COMPONENT_NAME Terminal)
 
-add_executable(${COMPONENT_NAME})
+add_library(${COMPONENT_NAME})
+add_library(${PROJECT_NAME}::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
 
 set_target_properties(
     ${COMPONENT_NAME}
     PROPERTIES
-        OUTPUT_NAME "sterm2"
+        OUTPUT_NAME "${PROJECT_NAME}_${COMPONENT_NAME}"
 )
 
 target_sources(
     ${COMPONENT_NAME}
     PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/Terminal.cpp
+)
+
+target_include_directories(
+    ${COMPONENT_NAME}
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/inc>
 )
 
 target_link_libraries(
     ${COMPONENT_NAME}
-    PRIVATE
+    PUBLIC
         qtermwidget5
         ${PROJECT_NAME}::Settings
-)
-
-install(
-    TARGETS ${COMPONENT_NAME}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )

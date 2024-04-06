@@ -25,6 +25,12 @@ set(COMPONENT_NAME Settings)
 add_library(${COMPONENT_NAME})
 add_library(${PROJECT_NAME}::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
 
+set_target_properties(
+    ${COMPONENT_NAME}
+    PROPERTIES
+        OUTPUT_NAME "${PROJECT_NAME}_${COMPONENT_NAME}"
+)
+
 target_sources(
     ${COMPONENT_NAME}
     PRIVATE

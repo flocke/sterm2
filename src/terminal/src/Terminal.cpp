@@ -18,33 +18,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <QApplication>
-#include <QMainWindow>
-
 #include "qtermwidget.h"
 
-#include "Settings.hpp"
+#include "Terminal.hpp"
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    QMainWindow *mainWindow = new QMainWindow();
-
-    STerm2::Settings* settings = new STerm2::Settings();
-
-    QTermWidget *console = new QTermWidget();
-
-    console->setTerminalFont(settings->getFont());
-    console->setScrollBarPosition(settings->getScrollbarPosition());
-    console->setKeyboardCursorShape(settings->getCursorShape());
-    console->setTerminalOpacity(settings->getOpacity());
-
-    mainWindow->setCentralWidget(console);
-    mainWindow->resize(600, 400);
-
-    // real startup
-    QObject::connect(console, &QTermWidget::finished, mainWindow, &QMainWindow::close);
-
-    mainWindow->show();
-    return app.exec();
+namespace STerm2 {
+    Terminal::Terminal() : QTermWidget()
+    {
+        setTerminalFont(settings.getFont());
+        setScrollBarPosition(settings.getScrollbarPosition());
+        setKeyboardCursorShape(settings.getCursorShape());
+        setTerminalOpacity(settings.getOpacity());
+    }
 }

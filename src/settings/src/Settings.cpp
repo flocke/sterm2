@@ -20,6 +20,7 @@
 
 #include <QDebug>
 #include <QSettings>
+#include <QStandardPaths>
 
 #include "qtermwidget.h"
 
@@ -28,6 +29,10 @@
 namespace STerm2 {
     QVariant Settings::getValue(QString key, QVariant defaultValue)
     {
+        QString path = QStandardPaths::locate(QStandardPaths::AppConfigLocation, "sterm2.ini");
+
+        qWarning() << "Config location:" << path;
+
         QSettings store(QSettings::IniFormat, QSettings::UserScope, "sterm2", "sterm2");
         return store.value(key, defaultValue);
     }
@@ -87,5 +92,10 @@ namespace STerm2 {
             qWarning() << "Unknown cursor shape:" << cursor;
             return QTermWidget::KeyboardCursorShape::BlockCursor;
         }
+    }
+
+    QString Settings::getColorSchema()
+    {
+        return getString("theme/colorschema", "Tango");
     }
 }

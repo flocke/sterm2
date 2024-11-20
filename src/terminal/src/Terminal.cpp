@@ -29,6 +29,7 @@ namespace STerm2 {
         setScrollBarPosition(settings.getScrollbarPosition());
         setKeyboardCursorShape(settings.getCursorShape());
         setTerminalOpacity(settings.getOpacity());
+        setColorScheme(settings.getColorSchema());
 
         startShellProgram();
     }

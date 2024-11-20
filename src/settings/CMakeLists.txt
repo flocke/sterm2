@@ -46,7 +46,6 @@ target_include_directories(
 target_link_libraries(
     ${COMPONENT_NAME}
     PUBLIC
-        Qt5::Core
-        Qt5::Gui
-        qtermwidget5
+        Qt6::Gui
+        qtermwidget6
 )

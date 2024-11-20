@@ -46,6 +46,6 @@ target_include_directories(
 target_link_libraries(
     ${COMPONENT_NAME}
     PUBLIC
-        qtermwidget5
+        qtermwidget6
         ${PROJECT_NAME}::Settings
 )

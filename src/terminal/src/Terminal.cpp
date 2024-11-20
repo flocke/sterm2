@@ -25,8 +25,6 @@
 namespace STerm2 {
     Terminal::Terminal() : QTermWidget(0)
     {
-        setTextCodec(settings.getTextEncoding());
-
         setTerminalFont(settings.getFont());
         setScrollBarPosition(settings.getScrollbarPosition());
         setKeyboardCursorShape(settings.getCursorShape());

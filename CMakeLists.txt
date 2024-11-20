@@ -41,8 +41,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 include(GNUInstallDirs)
 
 # Find external dependencies
-find_package(Qt5 COMPONENTS Widgets)
-find_package(QTermWidget5)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(QTermWidget6 REQUIRED)
 
 # Build the software
 add_subdirectory(src)
